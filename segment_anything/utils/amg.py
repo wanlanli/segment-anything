@@ -225,11 +225,13 @@ def generate_crop_boxes(
         crop_box_x0 = [int((crop_w - overlap) * i) for i in range(n_crops_per_side)]
         crop_box_y0 = [int((crop_h - overlap) * i) for i in range(n_crops_per_side)]
 
+        print(f"crop_w = {crop_w}, crop_h = {crop_h}")
         # Crops in XYWH format
         for x0, y0 in product(crop_box_x0, crop_box_y0):
             box = [x0, y0, min(x0 + crop_w, im_w), min(y0 + crop_h, im_h)]
             crop_boxes.append(box)
             layer_idxs.append(i_layer + 1)
+    print(len(crop_boxes))
 
     return crop_boxes, layer_idxs
 
